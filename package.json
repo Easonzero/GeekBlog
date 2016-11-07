@@ -2,7 +2,7 @@
   "name": "application-name",
   "version": "0.0.1",
   "scripts": {
-    "test": "node test/main",
+    "test": "node test/main"
   },
   "dependencies": {
     "showdown": "^1.4.4"
