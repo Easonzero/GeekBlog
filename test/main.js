@@ -2,16 +2,23 @@
  * Created by eason on 16-11-7.
  */
 const fs = require('fs');
-const Parser = require('../index').parser;
-const Server = require('../index').server;
+const {Parser,Server} = require('../index');
 
-fs.readFile('./test/post/test.md', (err,data)=>{
-    let md = data.toString();
-    Parser.mdparse(md).then((html)=>{
-        return Parser.tmplparse('post',{content:html});
-    }).then((html)=>{
-        fs.writeFile('./build/test.html',html);
-    })
+let posts = './test/post/';
+fs.readdir(posts,(err,paths)=>{
+    for(let file of paths){
+        let info = fs.statSync(posts + file);
+        if (!info.isDirectory()) {
+            fs.readFile(posts+file, (err,data)=>{
+                let md = data.toString();
+                Parser.mdparse(md).then((html)=>{
+                    return Parser.tmplparse('post',{content:html});
+                }).then((html)=>{
+                    fs.writeFile(`./build/${file.split('.')[0]}.html`,html);
+                })
+            });
+        }
+    }
 });
 
 (function copy(src='./static',dst='./build'){
