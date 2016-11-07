@@ -49,7 +49,6 @@ class Parser{
                     }
             }
         }
-        console.log(result)
         return new Promise((resolve)=>{
             resolve(result);
         });

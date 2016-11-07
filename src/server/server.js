@@ -5,7 +5,7 @@ const http = require('http');
 const url = require('url');
 const fs = require('fs');
 
-const _index_path = '/index.html';
+const _index_path = '/test.html';
 
 const mimetype = {
     'txt': 'text/plain',
@@ -26,7 +26,7 @@ class Server{
     constructor(){
         this.server = http.createServer(function (req, res) {
             let {pathname} = url.parse(req.url);
-            let path = `${__dirname}/build/${pathname != '/'?pathname:_index_path}`;
+            let path = `./build${pathname != '/'?pathname:_index_path}`;
             fs.exists(path, function(exists){
                 if(exists){
                     let file = fs.createReadStream(path);

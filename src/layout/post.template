@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="css/github-markdown.css">
 </head>
 <body>
-    {{content}}
+    <div class='markdown-body'>
+        {{content}}
+    </div>
 </body>
 </html>

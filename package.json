@@ -5,6 +5,7 @@
     "test": "node test/main"
   },
   "dependencies": {
+    "github-markdown-css": "^2.4.1",
     "showdown": "^1.4.4"
   }
 }
