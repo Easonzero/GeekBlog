@@ -47,6 +47,7 @@ class Parser{
                         cmd+='}'+ch;
                         state = 2;
                     }
+                    break;
             }
         }
         return new Promise((resolve)=>{

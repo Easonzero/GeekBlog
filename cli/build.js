@@ -2,37 +2,37 @@
  * Created by eason on 16-11-7.
  */
 const fs = require('fs');
-const {Parser,Define} = require('../index');
+const {Parser,Define,Database} = require('../index');
 
 module.exports = ()=>{
-    fs.readFile(`./${Define.data}`, (err,data)=>{
-        let json = JSON.parse(data.toString());
-        fs.readdir(`./${Define.layout}/`,(err,paths)=>{
-            for(let file of paths){
-                let info = fs.statSync(`./${Define.layout}/${file}`);
-                if (!info.isDirectory()&&file!==Define.postTmpl) {
-                    Parser.tmplparse(`./${Define.layout}/${file}`,json)
-                        .then((html)=>fs.writeFile(`./${Define.build}/${file.split('.')[0]}.html`,html));
-                }
-            }
-        });
+    let database = new Database(`./${Define.data}`);
 
-        fs.readdir(`./${Define.post}/`,(err,paths)=>{
-            for(let file of paths){
-                let info = fs.statSync(`./${Define.post}/${file}`);
-                if (!info.isDirectory()) {
-                    fs.readFile(`./${Define.post}/${file}`, (err,data)=>{
-                        let md = data.toString();
-                        Parser.mdparse(md).then((html)=>{
-                            json.content = html;
-                            return Parser.tmplparse(`./${Define.layout}/${Define.postTmpl}`,json);
-                        }).then((html)=>{
-                            fs.writeFile(`./${Define.build}/${file.split('.')[0]}.html`,html);
-                        })
-                    });
-                }
+    fs.readdir(`./${Define.layout}/`,(err,paths)=>{
+        for(let file of paths){
+            let info = fs.statSync(`./${Define.layout}/${file}`);
+            if (!info.isDirectory()&&file!==Define.postTmpl) {
+                Parser.tmplparse(`./${Define.layout}/${file}`,database.json)
+                    .then((html)=>fs.writeFile(`./${Define.build}/${file.split('.')[0]}.html`,html));
             }
-        });
+        }
+    });
+
+    fs.readdir(`./${Define.post}/`,(err,paths)=>{
+        for(let file of paths){
+            let info = fs.statSync(`./${Define.post}/${file}`);
+            if (!info.isDirectory()) {
+                fs.readFile(`./${Define.post}/${file}`, (err,data)=>{
+                    let md = data.toString();
+                    Parser.mdparse(md).then((html)=>{
+                        let post = database.getpost({path:`./${Define.post}/${file}`});
+                        post.content = html;
+                        return Parser.tmplparse(`./${Define.layout}/${Define.postTmpl}`,post);
+                    }).then((html)=>{
+                        fs.writeFile(`./${Define.build}/${file.split('.')[0]}.html`,html);
+                    })
+                });
+            }
+        }
     });
 
     (function copy(src=`./${Define.static}`,dst=`./${Define.build}`){
