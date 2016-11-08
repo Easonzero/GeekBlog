@@ -3,3 +3,4 @@
  */
 exports.Server = require('./src/server/server');
 exports.Parser = require('./src/parser/parser');
+exports.Define = require('./src/config');

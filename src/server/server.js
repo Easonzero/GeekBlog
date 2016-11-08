@@ -4,8 +4,7 @@
 const http = require('http');
 const url = require('url');
 const fs = require('fs');
-
-const _index_path = '/hahaha.html';
+const Define = require('../config');
 
 const mimetype = {
     'txt': 'text/plain',
@@ -26,7 +25,7 @@ class Server{
     constructor(){
         this.server = http.createServer(function (req, res) {
             let {pathname} = url.parse(req.url);
-            let path = `./build${pathname != '/'?pathname:_index_path}`;
+            let path = `./build${pathname != '/'?pathname:Define.index}`;
             fs.exists(path, function(exists){
                 if(exists){
                     let file = fs.createReadStream(path);
