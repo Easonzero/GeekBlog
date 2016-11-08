@@ -25,7 +25,6 @@ function rmpost(path){
                         fs.unlinkSync(file);
                     }
                 });
-                console.log(index)
                 json.posts.splice(index,1);
             }
         }
@@ -43,7 +42,6 @@ module.exports = (method,file)=>{
             fs.exists(file,(exist)=>{
                 if(exist){
                     let path = `${/\/.*\/(.*)\.md$/.exec(file)[1]}.html`;
-                        console.log(path);
                     rl.question('title:',(answer)=>{
                         let title = answer;
                         rl.question('tag:',(answer)=>{
@@ -52,19 +50,19 @@ module.exports = (method,file)=>{
                                 let md = data.toString();
                                 Parser.mdparse(md).then((html)=>{
                                     json.content = html;
-                                    return Parser.tmplparse('post',json);
+                                    return Parser.tmplparse('./layout/post.template',json);
                                 }).then((html)=>{
                                     fs.writeFile(`./build/${path}`,html);
                                 })
                             });
                             addpost(json);
+                            rl.close();
                         });
                     });
                 }else{
                     console.log('Could not find the file!')
                 }
             });
-            rl.close();
             break;
         case 'update':
             fs.exists(file,(exist)=>{
@@ -74,7 +72,7 @@ module.exports = (method,file)=>{
                         let md = data.toString();
                         Parser.mdparse(md).then((html)=>{
                             json.content = html;
-                            return Parser.tmplparse('post',json);
+                            return Parser.tmplparse('./layout/post.template',json);
                         }).then((html)=>{
                             fs.writeFile(`./build/${path}`,html);
                         })

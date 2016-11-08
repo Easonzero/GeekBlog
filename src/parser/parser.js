@@ -14,7 +14,7 @@ class Parser{
     }
 
     static tmplparse(tmpl,o){
-        let tmpldata = fs.readFileSync(`./src/layout/${tmpl}.template`).toString();
+        let tmpldata = fs.readFileSync(tmpl).toString();
         let state = 0,result='',cmd='';
         for(let i=0;i<tmpldata.length;i++){
             let ch = tmpldata.charAt(i);

@@ -5,7 +5,7 @@ const http = require('http');
 const url = require('url');
 const fs = require('fs');
 
-const _index_path = '/test.html';
+const _index_path = '/hahaha.html';
 
 const mimetype = {
     'txt': 'text/plain',

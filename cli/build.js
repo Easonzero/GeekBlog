@@ -5,6 +5,7 @@ const fs = require('fs');
 const {Parser} = require('../index');
 
 module.exports = ()=>{
+
     let posts = './post/';
     fs.readdir(posts,(err,paths)=>{
         for(let file of paths){
@@ -13,7 +14,7 @@ module.exports = ()=>{
                 fs.readFile(posts+file, (err,data)=>{
                     let md = data.toString();
                     Parser.mdparse(md).then((html)=>{
-                        return Parser.tmplparse('post',{content:html});
+                        return Parser.tmplparse('./layout/post.template',{content:html});
                     }).then((html)=>{
                         fs.writeFile(`./build/${file.split('.')[0]}.html`,html);
                     })
