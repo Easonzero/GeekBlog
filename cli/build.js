@@ -5,7 +5,7 @@ const fs = require('fs');
 const {Parser} = require('../index');
 
 module.exports = ()=>{
-    let posts = './test/post/';
+    let posts = './post/';
     fs.readdir(posts,(err,paths)=>{
         for(let file of paths){
             let info = fs.statSync(posts + file);
