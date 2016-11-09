@@ -1,14 +1,11 @@
 {
-  "name": "application-name",
-  "version": "0.0.1",
-  "scripts": {
-    "test": "node test/main"
-  },
+  "name": "geek-blog",
+  "version": "1.0.0",
   "dependencies": {
     "github-markdown-css": "^2.4.1",
     "showdown": "^1.4.4"
   },
   "bin": {
-    "easycli": "cli/index.js"
+    "geekcli": "cli/index.js"
   }
 }

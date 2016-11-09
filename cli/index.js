@@ -17,4 +17,14 @@ switch(process.argv[2]){
     case 'server'://开启服务器命令
         server();
         break;
+    default:
+        console.log(`
+Usage: geekcli <command>
+
+Commands:
+   init     Create a new GeekBlog folder.
+   build    Write all files of project into ./build.
+   post     Manage posts.
+   server   Start server.
+    `)
 }
