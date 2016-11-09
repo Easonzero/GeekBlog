@@ -45,7 +45,7 @@ class Parser{
                         state = 0;
                         let content = cmd.replace(/^[\s　]+|[\s　]+/g, "");
                         if(content==Define.data){
-                            result += `<script>data = ${JSON.stringify(o)}</script>`;
+                            result += `<script>let data = ${JSON.stringify(o)}</script>`;
                         }else{
                             let indexs = content.split('.');
                             let tmp = o;

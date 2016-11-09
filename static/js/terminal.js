@@ -53,7 +53,7 @@ class Terminal{
             if(i>0)
                 while(k<this.res[i-1].line){
                     k++;
-                    ctx.fillText(this.res[i-1].value[k-1], 0, (_last+k-this.cmd[i].line-2/5)*this.lineHeight);
+                    ctx.fillText(this.res[i-1].value[k-1], 0, (_last+k-this.res[i-1].line-2/5)*this.lineHeight);
                 }
             while(j<this.cmd[i].line){
                 j++;
@@ -103,8 +103,9 @@ class Terminal{
             let cmd = '';
             for(let s of this.cmd[0].value){ cmd += s }
             this.cmdHandler(cmd).then((result)=>{
+                result = result.split('\n');
                 this.cmd.unshift({value:[''],line:1});
-                this.res.unshift({value:[result],line:1});
+                this.res.unshift({value:result,line:result.length});
                 this.curY+=1+this.res[0].line;
                 this.curX = this.prompt.width+10;
                 this.render();
@@ -125,21 +126,24 @@ class Terminal{
             this.render();
         }
         else {
-            this.curX+=this.ctx.measureText(char).width;
-            if(this.curX>this.width-1) {
-                this.curX = 0;
-                this.cmd[0].line++;
+            let cmd = this.cmd[0];
+            let start = this.curX;
+            if(this.curX>this.width) {
+                start = 0;
+                cmd.line++;
                 this.curY++;
-                this.cmd[0].value[this.cmd[0].line-1] = '';
+                cmd.value[cmd.line-1] = '';
             }
-            this.cmd[0].value[this.cmd[0].line-1] += char;
+            this.curX = start + this.ctx.measureText(char).width;
+            cmd.value[cmd.line-1] += char;
             this.render();
         }
     }
 
     cmdHandler(cmd){
-        if(cmdHandler[cmd])
-            return cmdHandler[cmd]();
+        cmd = cmd.replace(/(^\s*)|(\s*$)/g,'').split(/\s/);
+        if(cmdHandler[cmd[0]])
+            return cmdHandler[cmd[0]](cmd);
         else
             return new Promise((resolve)=>{
                 resolve(`command not found:${cmd}!`);
