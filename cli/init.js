@@ -7,9 +7,11 @@ const {Define} = require('../index');
 module.exports = ()=>{
     for(let path in Define){
         if(path=='data'){
-            fs.writeFile(`./${Define.data}`,'{"name":"Easonzero","posts":[]}');
+            fs.exists(`./${Define[path]}`,(exist)=>{
+                if(!exist) fs.writeFile(`./${Define.data}`,'{"name":"Easonzero","posts":[]}');
+            });
         }
-        else if(path.includes('Tmpl')) continue;
+        else if(path.includes('Tmpl')||path.includes('Page')) continue;
         else
             fs.exists(`./${Define[path]}`,(exist)=>{
                 if(!exist) fs.mkdir(`./${Define[path]}`);

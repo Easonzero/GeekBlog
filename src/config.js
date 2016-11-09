@@ -2,7 +2,7 @@
  * Created by eason on 16-11-8.
  */
 module.exports = {
-    index:'index.html',//首页文件名
+    indexPage:'index.html',//首页文件名
     indexTmpl:'index.template',//首页模板
     postTmpl:'post.template',//post文件模板
     post:'post',//post目录

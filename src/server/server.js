@@ -26,7 +26,7 @@ class Server{
     constructor(){
         this.server = http.createServer(function (req, res) {
             let {pathname} = url.parse(req.url);
-            let path = `./build${pathname != '/'?pathname:`/${Define.index}`}`;
+            let path = `./build${pathname != '/'?pathname:`/${Define.indexPage}`}`;
             fs.exists(path, function(exists){
                 if(exists){
                     let file = fs.createReadStream(path);
