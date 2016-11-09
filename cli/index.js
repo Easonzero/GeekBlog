@@ -1,10 +1,12 @@
 #!/usr/bin/env node
+let init = require('./init');
 let build = require('./build');
 let post = require('./post');
 let server = require('./server');
 
 switch(process.argv[2]){
-    case 'init':
+    case 'init'://初始化命令
+        init();
         break;
     case 'build'://构建命令
         build();

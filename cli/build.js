@@ -27,8 +27,10 @@ module.exports = ()=>{
                     let md = data.toString();
                     Parser.mdparse(md).then((html)=>{
                         let post = database.getpost({path:`./${Define.post}/${file}`});
-                        post.content = html;
-                        return Parser.tmplparse(`./${Define.layout}/${Define.postTmpl}`,post);
+                        if(post){
+                            post.content = html;
+                            return Parser.tmplparse(`./${Define.layout}/${Define.postTmpl}`,post);
+                        }
                     }).then((html)=>{
                         fs.writeFile(`./${Define.build}/${file.split('.')[0]}.html`,html);
                     })
