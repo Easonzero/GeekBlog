@@ -4,9 +4,26 @@
     <meta charset="UTF-8">
     <title>{{name}}</title>
     <link rel="stylesheet" href="css/github-markdown.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
     {{data.json}}
 </head>
 <body>
-<a href="test.html">{{posts.0.title}}</a>
+<header>
+    header
+</header>
+<section class="content">
+    <section class="terminal center">
+        <canvas></canvas>
+    </section>
+</section>
+<footer>
+    footer
+</footer>
 </body>
+<script src="./js/components.js"></script>
+<script src="./js/utils.js"></script>
+<script src="./js/handler.js"></script>
+<script src="./js/terminal.js"></script>
+<script src="./js/index.js"></script>
 </html>

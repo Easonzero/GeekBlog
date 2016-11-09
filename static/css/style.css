@@ -1,0 +1,32 @@
+* {
+    position:relative;
+    margin: 0;
+    padding: 0;
+}
+
+html,body{
+    height:100%;
+    width:100%
+}
+
+.center{
+    left:50%;
+    transform:translate(-50%);
+}
+
+.content{
+    height:40%;
+    width:100%;
+}
+
+.terminal{
+    height:100%;
+    width:98%;
+    background-color: rgba(10,10,10,0.5);
+    border-top:1px solid;
+    border-bottom:1px solid;
+}
+
+.hide {
+    display: none;
+}
