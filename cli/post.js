@@ -18,7 +18,7 @@ module.exports = (method,file)=>{
                     rl.question('title:',(answer)=>{
                         let title = answer;
                         rl.question('tag:',(answer)=>{
-                            let json = {title:title,tag:answer,path:path};
+                            let json = {title:title,tag:answer.split('|'),path:path};
                             new Database(`./${Define.data}`).addpost(json).flush();
                             fs.readFile(file, (err,data)=>{
                                 let md = data.toString();
