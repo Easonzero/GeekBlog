@@ -7,7 +7,7 @@ const readline = require('readline');
 
 module.exports = (method,file)=>{
     switch (method){
-        case 'create':
+        case 'create'://创建post
             const rl = readline.createInterface({
                 input: process.stdin,
                 output: process.stdout
@@ -37,7 +37,7 @@ module.exports = (method,file)=>{
                 }
             });
             break;
-        case 'update':
+        case 'update'://更新post
             let path = `${/\/.*\/(.*)\.md$/.exec(file)[1]}.html`;
             let database = new Database(`./${Define.data}`);
             let post = database.getpost({path:path});
@@ -58,7 +58,7 @@ module.exports = (method,file)=>{
                 }
             });
             break;
-        case 'delete':
+        case 'delete'://删除post
             fs.exists(file,(exist)=>{
                 if(exist){
                     fs.unlinkSync(file);

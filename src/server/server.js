@@ -22,6 +22,7 @@ const mimetype = {
 };
 
 class Server{
+    //初始化服务器
     constructor(){
         this.server = http.createServer(function (req, res) {
             let {pathname} = url.parse(req.url);
@@ -40,7 +41,7 @@ class Server{
             });
         });
     }
-
+    //监听端口
     listen(ip,port){
         console.log(`The server is listening ${ip}:${port}...`);
         this.server.listen(port, ip);

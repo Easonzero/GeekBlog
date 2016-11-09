@@ -2,13 +2,14 @@
  * Created by eason on 16-11-8.
  */
 const fs = require('fs');
+const Define = require('../config');
 
 class Database{
     constructor(path){
         this.json = JSON.parse(fs.readFileSync(path));
         this.path = path;
     }
-
+    //添加post
     addpost({title,tag,path}){
         let date = new Date();
         let _date = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
@@ -25,7 +26,7 @@ class Database{
         });
         return this;
     }
-
+    //去除post
     rmpost({path}){
         for(let index in this.json.posts){
             if(this.json.posts[index].path = path) {
@@ -40,7 +41,7 @@ class Database{
         }
         return this;
     }
-
+    //得到post
     getpost({path}){
         for(let index in this.json.posts) {
             if (this.json.posts[index].path = path) {
@@ -49,9 +50,11 @@ class Database{
         }
         return false;
     }
-
+    //写入文件
     flush(){
-        fs.writeFile(this.path,JSON.stringify(this.json));
+        let content = JSON.stringify(this.json);
+        fs.writeFile(this.path,content);
+        fs.writeFile(`./${Define.build}/${this.path.substr(2)}`,content);
     }
 }
 

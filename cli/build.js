@@ -6,7 +6,9 @@ const {Parser,Define,Database} = require('../index');
 
 module.exports = ()=>{
     let database = new Database(`./${Define.data}`);
-
+    //输出data.json
+    database.flush();
+    //输出除了post之外的所有layout文件
     fs.readdir(`./${Define.layout}/`,(err,paths)=>{
         for(let file of paths){
             let info = fs.statSync(`./${Define.layout}/${file}`);
@@ -16,7 +18,7 @@ module.exports = ()=>{
             }
         }
     });
-
+    //输出post文件
     fs.readdir(`./${Define.post}/`,(err,paths)=>{
         for(let file of paths){
             let info = fs.statSync(`./${Define.post}/${file}`);
@@ -34,7 +36,7 @@ module.exports = ()=>{
             }
         }
     });
-
+    //输出静态文件
     (function copy(src=`./${Define.static}`,dst=`./${Define.build}`){
         fs.readdir( src, function( err, paths ) {
             if (err) {

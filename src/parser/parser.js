@@ -6,13 +6,14 @@ const showdown  = require('showdown'),
     converter = new showdown.Converter();
 
 class Parser{
+    //解析文件
     static mdparse(md){
         let html = converter.makeHtml(md);
         return new Promise((resolve)=>{
             resolve(html);
         });
     }
-
+    //解析模板
     static tmplparse(tmpl,o){
         let tmpldata = fs.readFileSync(tmpl).toString();
         let state = 0,result='',cmd='';
@@ -41,7 +42,13 @@ class Parser{
                 case 3:
                     if(ch=='}') {
                         state = 0;
-                        result+=o[cmd.replace(/^[\s　]+|[\s　]+/g, "")];
+                        let content = cmd.replace(/^[\s　]+|[\s　]+/g, "");
+                        let indexs = content.split('.');
+                        let tmp = o;
+                        for(let i=0;i<indexs.length;i++){
+                            tmp = tmp[indexs[i]];
+                        }
+                        result += tmp;
                         cmd='';
                     }else {
                         cmd+='}'+ch;

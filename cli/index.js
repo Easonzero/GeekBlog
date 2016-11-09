@@ -4,13 +4,15 @@ let post = require('./post');
 let server = require('./server');
 
 switch(process.argv[2]){
-    case 'build':
+    case 'init':
+        break;
+    case 'build'://构建命令
         build();
         break;
-    case 'post':
+    case 'post'://管理文章命令
         post(process.argv[3],process.argv[4]);
         break;
-    case 'server':
+    case 'server'://开启服务器命令
         server();
         break;
 }
