@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>{{name}}</title>
     <link rel="stylesheet" href="css/github-markdown.css">
-    {{name}}
+    {{data.json}}
 </head>
 <body>
 <a href="test.html">{{posts.0.title}}</a>

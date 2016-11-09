@@ -2,6 +2,7 @@
  * Created by eason on 16-11-7.
  */
 const fs = require('fs');
+const Define = require('../config');
 const showdown  = require('showdown'),
     converter = new showdown.Converter();
 
@@ -43,12 +44,16 @@ class Parser{
                     if(ch=='}') {
                         state = 0;
                         let content = cmd.replace(/^[\s　]+|[\s　]+/g, "");
-                        let indexs = content.split('.');
-                        let tmp = o;
-                        for(let i=0;i<indexs.length;i++){
-                            tmp = tmp[indexs[i]];
+                        if(content==Define.data){
+                            result += `<script>data = ${JSON.stringify(o)}</script>`;
+                        }else{
+                            let indexs = content.split('.');
+                            let tmp = o;
+                            for(let i=0;i<indexs.length;i++){
+                                tmp = tmp[indexs[i]];
+                            }
+                            result += tmp;
                         }
-                        result += tmp;
                         cmd='';
                     }else {
                         cmd+='}'+ch;
