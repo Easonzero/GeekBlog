@@ -3,9 +3,9 @@
  */
 let cmdHandler = {
     'help':function([cmd,reg]){
-        let value = '';
+        let value = '',i=1;
         for(let x of Object.keys(cmdHandler)){
-            value += 'sadf\n';
+            value += `  ${i++}.  ${x}\n`;
         }
         return new Promise((resolve)=>{
             resolve(value);

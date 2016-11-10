@@ -1,11 +1,19 @@
-let height = $('.content').css('height');
-let width = $('.content').css('width');
+let content = $('.content');
+let terminalCanvas = $('#terminal-canvas');
+let bgCanvas = $('#bg-canvas');
 
-$('canvas').attr('height',height);
-$('canvas').attr('width',width);
+let height = content.css('height');
+let width = content.css('width');
 
-const canvas = jQuery('canvas')[0];
+terminalCanvas.attr('height',height);
+terminalCanvas.attr('width',width);
+bgCanvas.attr('width',window.innerWidth);
+bgCanvas.attr('height',window.innerHeight);
+
+const canvas = jQuery('#terminal-canvas')[0];
+const canvasBg = jQuery('#bg-canvas')[0];
 const ctx = canvas.getContext('2d');
+const ctxBg = canvasBg.getContext('2d');
 
 const terminal = new Terminal(
     ctx,
@@ -14,9 +22,10 @@ const terminal = new Terminal(
     'Eason@blog'
 );
 
+const hacker = new Hacker(
+    ctxBg,
+    window.innerWidth,
+    window.innerHeight
+);
+
 terminal.render();
-
-
-
-// document.getElementById('hidden-input-' + parameters.ctx.cText.elemId).focus();
-// window.scroll(0, ctx1.canvas.offsetTop);

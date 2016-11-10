@@ -14,16 +14,20 @@
 </header>
 <section class="content">
     <section class="terminal center">
-        <canvas></canvas>
+        <canvas id="terminal-canvas"></canvas>
     </section>
 </section>
 <footer>
     footer
 </footer>
+<div class="center bg">
+    <canvas id="bg-canvas"></canvas>
+</div>
 </body>
 <script src="./js/components.js"></script>
 <script src="./js/utils.js"></script>
 <script src="./js/handler.js"></script>
 <script src="./js/terminal.js"></script>
+<script src="./js/hacker.js"></script>
 <script src="./js/index.js"></script>
 </html>
