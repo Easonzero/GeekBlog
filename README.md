@@ -27,7 +27,7 @@ geekcli post update ${文章路径} #更新文章
 geekcli post delete ${文章路径} #删除文章
 ```
 
-//todo 计划制作将博客直接发布到github的api
+//todo 计划制作将博客直接发布到github的api  
 
 ### Themes DIY
 
