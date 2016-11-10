@@ -4,5 +4,5 @@
 const Server = require('../src/server/server');
 
 module.exports = ()=>{
-    new Server().listen('127.0.0.1',4001);
+    new Server().listen('127.0.0.1',4000);
 };

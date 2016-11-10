@@ -7,6 +7,7 @@ class Terminal{
         this.height = height;
         this.width = width;
 
+        this.offset = 0;
         this.lineHeight = 20;
         this.lineLimit = Math.floor(height/this.lineHeight);
         this.fontSize = 15;
@@ -37,12 +38,25 @@ class Terminal{
         cursorAnimate();
     }
 
+    scroll(attr){
+        switch (attr){
+            case 'up':
+                this.offset--;
+                break;
+            case 'down':
+                this.offset++;
+                break;
+        }
+        this.cursor.active = false;
+        this.render();
+    }
+
     render(){
         this.ctx.clearRect(0,0,this.width,this.height);
-        let last = this.curY<this.lineLimit?this.curY:this.lineLimit,
+        let last = (this.curY<this.lineLimit?this.curY:this.lineLimit),
             i = 0,_last=last;
 
-        while(_last>0){
+        while(this.offset+_last>0&&i<=this.res.length){
             let j=0,k=0;
             ctx.fillStyle = 'white';
 
@@ -53,18 +67,18 @@ class Terminal{
             if(i>0)
                 while(k<this.res[i-1].line){
                     k++;
-                    ctx.fillText(this.res[i-1].value[k-1], 0, (_last+k-this.res[i-1].line-2/5)*this.lineHeight);
+                    ctx.fillText(this.res[i-1].value[k-1], 0, (this.offset+_last+k-this.res[i-1].line-2/5)*this.lineHeight);
                 }
             while(j<this.cmd[i].line){
                 j++;
                 let startX = j==1?this.prompt.width+10:0;
-                ctx.fillText(this.cmd[i].value[j-1], startX, (_last+j-k-this.cmd[i].line-2/5)*this.lineHeight);
+                ctx.fillText(this.cmd[i].value[j-1], startX, (this.offset+_last+j-k-this.cmd[i].line-2/5)*this.lineHeight);
             }
-            this.prompt.draw(0,(_last-k-j)*this.lineHeight);
+            this.prompt.draw(0,(this.offset+_last-k-j)*this.lineHeight);
             i++;
             _last-=j+k;
         }
-        this.cursor.draw(this.curX+this.cursorOffset,(last-1)*this.lineHeight);
+        this.cursor.draw(this.curX+this.cursorOffset,(this.offset+last-1)*this.lineHeight);
     }
 
     listen(){
@@ -98,17 +112,29 @@ class Terminal{
     }
 
     input(char){
+        this.offset = 0;
+        this.cursor.active = true;
         if(this.cmd.length===0) this.cmd.unshift({value:[''],line:1});
         if(char=='$${Enter}') {
             let cmd = '';
             for(let s of this.cmd[0].value){ cmd += s }
             this.cmdHandler(cmd).then((result)=>{
-                result = result.split('\n');
-                this.cmd.unshift({value:[''],line:1});
-                this.res.unshift({value:result,line:result.length});
-                this.curY+=1+this.res[0].line;
-                this.curX = this.prompt.width+10;
-                this.render();
+                switch(result){
+                    case '${clear}':
+                        this.curX = this.prompt.width+10;
+                        this.curY = 1;
+                        this.cmd = [];
+                        this.res = [];
+                        this.render();
+                        break;
+                    default:
+                        result = result.split('\n');
+                        this.cmd.unshift({value:[''],line:1});
+                        this.res.unshift({value:result,line:result.length});
+                        this.curY+=1+this.res[0].line;
+                        this.curX = this.prompt.width+10;
+                        this.render();
+                }
             });
         }
         else if(char=='$${Delete}') {

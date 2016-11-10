@@ -4,10 +4,21 @@
     <meta charset="UTF-8">
     <title>{{title}}</title>
     <link rel="stylesheet" href="css/github-markdown.css">
+    <link rel="stylesheet" href="css/post.css">
 </head>
 <body>
-    <div class='markdown-body'>
+    <header class="center"><h4>TITLE:{{title}}</h4><br>
+            <h4>DATE:{{date}}</h4><br>
+            <h4>TAG:{{tag}}</h4><br>
+    </header>
+    <section class='markdown-body center'>
         {{content}}
-    </div>
+    </section>
+    <a class='fix-button top' href='#top'>
+        Top
+    </a>
+    <a class='fix-button return' href='./index.html'>
+        Return
+    </a>
 </body>
 </html>

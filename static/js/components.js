@@ -15,22 +15,25 @@ class Cursor extends Component{
     constructor(ctx,color,width,height){
         super(ctx,color,width,height)
         this.active = true;
+        this.flag = true;
         this.time = 0;
         this.speed = 36;
     }
 
     draw(x,y){
-        this.time++;
-        if(this.time==this.speed){
-            this.time=0;
-            this.active = !this.active;
-        }
-
         if(this.active){
-            ctx.fillStyle = this.color;
-            ctx.fillRect(x,y,this.width,this.height);
-        }else{
-            ctx.clearRect(x,y,this.width,this.height);
+            this.time++;
+            if(this.time>=this.speed){
+                this.time=0;
+                this.flag = !this.flag;
+            }
+
+            if(this.flag){
+                ctx.clearRect(x,y,this.width,this.height);
+            } else{
+                ctx.fillStyle = this.color;
+                ctx.fillRect(x,y,this.width,this.height);
+            }
         }
     };
 }
