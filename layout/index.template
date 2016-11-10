@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>{{name}}</title>
     <link rel="stylesheet" href="css/github-markdown.css">
     <link rel="stylesheet" href="css/style.css">
@@ -10,7 +11,27 @@
 </head>
 <body>
 <header>
-    header
+    <img class="title center" src="./image/title.png"/>
+    <section class="head-content">
+        <a class="head-pic-a">
+            <img class="head-pic" src="./image/head.png"/>
+        </a>
+        <section class="links-of-author">
+            <span class="links-of-author-item item-name">
+                 <a>{{name}}</a>
+            </span>
+            <span class="links-of-author-item item">
+                 <a href="{{github}}">
+                    Github
+                 </a>
+            </span>
+            <span class="links-of-author-item item">
+                 <a href="{{zhihu}}">
+                    知乎
+                 </a>
+            </span>
+        </section>
+    </section>
 </header>
 <section class="content">
     <section class="terminal center">
@@ -18,7 +39,9 @@
     </section>
 </section>
 <footer>
-    footer
+    <section class="bottom center">Powered By
+    <a href="https://github.com/Easonzero/GeekBlog">GeekBlog</a>
+    </section>
 </footer>
 <div class="center bg">
     <canvas id="bg-canvas"></canvas>

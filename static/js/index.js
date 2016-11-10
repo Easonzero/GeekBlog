@@ -1,4 +1,4 @@
-let content = $('.content');
+let content = $('.terminal');
 let terminalCanvas = $('#terminal-canvas');
 let bgCanvas = $('#bg-canvas');
 
@@ -7,8 +7,8 @@ let width = content.css('width');
 
 terminalCanvas.attr('height',height);
 terminalCanvas.attr('width',width);
-bgCanvas.attr('width',window.innerWidth);
-bgCanvas.attr('height',window.innerHeight);
+bgCanvas.attr('width',window.screen.width);
+bgCanvas.attr('height',window.screen.height);
 
 const canvas = jQuery('#terminal-canvas')[0];
 const canvasBg = jQuery('#bg-canvas')[0];
@@ -24,8 +24,8 @@ const terminal = new Terminal(
 
 const hacker = new Hacker(
     ctxBg,
-    window.innerWidth,
-    window.innerHeight
+    window.screen.width,
+    window.screen.height
 );
 
 terminal.render();

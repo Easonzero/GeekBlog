@@ -115,9 +115,10 @@ class Terminal{
             let cmd = this.cmd[0];
             if(cmd.value[cmd.line-1].length===0&&cmd.line!=1){
                 cmd.line--;
+                let c = cmd.value[cmd.line-1].charAt(cmd.value[cmd.line-1].length-1);
                 cmd.value[cmd.line-1] = cmd.value[cmd.line-1].substr(0,cmd.value[cmd.line-1].length-1);
                 this.curY--;
-                this.curX = this.width-this.ctx.measureText('c').width;
+                this.curX = this.width;
             }else if(cmd.value[cmd.line-1].length!==0){
                 let c = cmd.value[cmd.line-1].charAt(cmd.value[cmd.line-1].length-1);
                 cmd.value[cmd.line-1] = cmd.value[cmd.line-1].substr(0,cmd.value[cmd.line-1].length-1);
