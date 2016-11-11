@@ -21,7 +21,7 @@ class Database{
                 return this;
             }
         }
-        this.json.posts.push({
+        this.json.posts.unshift({
             title:title,tag:tag,date:_date,path:path
         });
         return this;

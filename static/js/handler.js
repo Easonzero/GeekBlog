@@ -15,7 +15,7 @@ let cmdHandler = {
     'article':function([cmd,id]){
         let value = '';
         if(id){
-            if(id>data.posts.length) value = 'No match any tag!';
+            if(id>data.posts.length-1) value = `No match with id:${id}!`;
             else {
                 value = 'Waiting...\nFinding...';
                 setTimeout(()=>window.location.href=data.posts[id].path,500);
@@ -24,7 +24,7 @@ let cmdHandler = {
             for(let index in data.posts){
                 value += `id '${index}'    :    title '${data.posts[index].title}'`+'\n';
             }
-            value+='type \'article <id>\' to read the article by id!';
+            value+=`type 'article <id>' to read the article by id!`;
         }
         return new Promise((resolve)=>{
             resolve(value);
@@ -33,7 +33,7 @@ let cmdHandler = {
     'tag':function([cmd,id]){
         let value = '',i=1;
         if(id){
-            if(id>__tag.length) value = 'No match any tag!';
+            if(id>__tag.length) value = `No match with id ${id}!`;
             else{
                 value += `TAG:${__tag[id-1]}`+'\n';
                 for(let index in data.posts){
@@ -53,8 +53,8 @@ let cmdHandler = {
                         value += `id '${i++}'     :    TAG '${tag}'`+'\n';
                     }
                 }
-                value+='type \'tag <id>\' to look through all article of the tag!';
             }
+            value+=`type 'tag <id>' to look through all article of the tag!`;
         }
         return new Promise((resolve)=>{
             resolve(value);

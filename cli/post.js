@@ -19,7 +19,8 @@ module.exports = (method,file)=>{
                         let title = answer;
                         rl.question('tag:',(answer)=>{
                             let json = {title:title,tag:answer.split('|'),path:path};
-                            new Database(`./${Define.data}`).addpost(json).flush();
+                            let database = new Database(`./${Define.data}`);
+                            database.addpost(json).flush();
                             fs.readdir(`./${Define.layout}/`,(err,paths)=>{
                                 for(let file of paths){
                                     let info = fs.statSync(`./${Define.layout}/${file}`);
