@@ -2,6 +2,7 @@
   "name": "geek-blog",
   "version": "1.0.0",
   "dependencies": {
+    "github-api": "^2.3.0",
     "github-markdown-css": "^2.4.1",
     "showdown": "^1.4.4"
   },

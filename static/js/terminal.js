@@ -41,10 +41,10 @@ class Terminal{
     scroll(attr){
         switch (attr){
             case 'up':
-                this.offset--;
+                this.offset++;
                 break;
             case 'down':
-                this.offset++;
+                this.offset--;
                 break;
         }
         this.cursor.active = false;
@@ -173,7 +173,10 @@ class Terminal{
             return cmdHandler[cmd[0]](cmd);
         else
             return new Promise((resolve)=>{
-                resolve(`command not found:${cmd}!`);
+                resolve(`
+                command not found:${cmd}!
+                Type 'help' for more info!
+            `);
             })
     }
 }

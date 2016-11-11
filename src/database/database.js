@@ -12,9 +12,9 @@ class Database{
     //添加post
     addpost({title,tag,path}){
         let date = new Date();
-        let _date = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+        let _date = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
         for(let index in this.json.posts) {
-            if (this.json.posts[index].path = path) {
+            if (this.json.posts[index].path == path) {
                 this.json.posts[index] = {
                     title:title,tag:tag,date:_date,path:path
                 };
@@ -54,7 +54,6 @@ class Database{
     flush(){
         let content = JSON.stringify(this.json);
         fs.writeFile(this.path,content);
-        fs.writeFile(`./${Define.build}/${this.path.substr(2)}`,content);
     }
 }
 

@@ -17,6 +17,21 @@ header{
     padding: 10px;
 }
 
+footer{
+    margin-top: 40px;
+    position: absolute;
+    width:80%;
+    text-align:center;
+    color:white;
+    background-color: rgb(10,10,10);
+    padding: 10px;
+}
+
+footer a{
+    text-decoration:none;
+    color:white
+}
+
 .return,.top{
     text-decoration:none;
     color:white;

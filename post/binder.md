@@ -1,0 +1,27 @@
+#Bind机制
+###Bind概述
+binder通信是一种client-server的通信结构
+
+从表面上来看，是client通过获得一个server的代理接口，对server进行直接调用；
+
+代理接口的方法会将client传递的参数打包成为Parcel对象；
+
+代理接口将该Parcel发送给内核中的binder driver.
+
+server会读取binder driver中的请求数据，如果是发送给自己的，解包Parcel对象，处理并将结果返回；
+
+整个的调用过程是一个同步过程，在server处理的时候，client会block住。
+
+###Bind理解
+Bind机制中主要有client、server、serviceManager、Parcel、Binder驱动。  
+client是我们直接面对的客户端，server是我们后台维护的service任务。当client与server希望通信的时候发生了什么呢？  
+****** 
+首先是构造了一个ProcessState类的实例，这个构造过程干两件事，一个是打开一个叫做binder的内核虚拟设备，用于线程间通信。第二件事是将binder设备与内存建立映射。这件事完成后达成的效果是可以通过操作内存的读写直接对应修改binder设备的内容。  
+******
+然后构照一个BpBinder类的实例，这个构造过程会取得主线程储存的对象IPCThreadState实例，并且根据BpBinder创造BpServiceManager类实例。IPCThreadState实例可以将BpBinder交给他的信息打包成Parcel类型发送到之前与binder设备映射的内存中，而BpServiceManager实例中的remote属性的值即为BpBinder，实例本身事实上就是serviceManager的一个代理或者接口，提供给client针对server的查询操作。
+******
+接着开始创造server，server的构造是简单的new一个相应的service对象，然后以key，value的形式传入BpServiceManager的addservice方法中。addservice()是通过调用BpserviceManager的remote属性，也就是BpBinder的addservice方法，将该service与BpBinder绑定，同时将service加入到BpserviceManager的service列表中。
+******
+为了完成整个通信的最后一步，即server接受信息的行为，还需要为server构建一个消息循环，并为server所在线程打开binder驱动。binder是进程相关的，processState已经打开了就无需再次打开，而消息循环则是调用BpBinder的IPCThreadState的startThreadPool和joinThreadPool方法。前者会启动一个新的线程，并且创建一个新的IPCThreadState，后者由所有的IPCThreadState调用，里面会构造一个looper循环。之所以启用两个循环的原因，我在深入浅出android的作者博客中看到说是为了加快消息循环的速度。可是我感觉好像是为了clinet和server都构建消息泵。
+******
+这样通过调用BpBinder的方法就可以对binder设备读写消息，无论是client还是server都可以响应或发送命令。

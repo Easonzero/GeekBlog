@@ -25,4 +25,6 @@ module.exports = ()=>{
                 if(!exist) fs.mkdir(`./${Define[path]}`);
             });
     }
+
+
 };

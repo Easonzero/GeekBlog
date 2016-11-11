@@ -20,6 +20,15 @@ module.exports = (method,file)=>{
                         rl.question('tag:',(answer)=>{
                             let json = {title:title,tag:answer.split('|'),path:path};
                             new Database(`./${Define.data}`).addpost(json).flush();
+                            fs.readdir(`./${Define.layout}/`,(err,paths)=>{
+                                for(let file of paths){
+                                    let info = fs.statSync(`./${Define.layout}/${file}`);
+                                    if (!info.isDirectory()&&file!==Define.postTmpl) {
+                                        Parser.tmplparse(`./${Define.layout}/${file}`,database.json)
+                                            .then((html)=>fs.writeFile(`./${Define.build}/${file.split('.')[0]}.html`,html));
+                                    }
+                                }
+                            });
                             fs.readFile(file, (err,data)=>{
                                 let md = data.toString();
                                 Parser.mdparse(md).then((html)=>{

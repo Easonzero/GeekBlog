@@ -24,6 +24,7 @@ let cmdHandler = {
             for(let index in data.posts){
                 value += `id '${index}'    :    title '${data.posts[index].title}'`+'\n';
             }
+            value+='type \'article <id>\' to read the article by id!';
         }
         return new Promise((resolve)=>{
             resolve(value);
@@ -52,6 +53,7 @@ let cmdHandler = {
                         value += `id '${i++}'     :    TAG '${tag}'`+'\n';
                     }
                 }
+                value+='type \'tag <id>\' to look through all article of the tag!';
             }
         }
         return new Promise((resolve)=>{

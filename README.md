@@ -7,7 +7,9 @@ A Lite and Geek-Style Blog Generator
 ![结果](./image/result.png)
 
 ### Installation
-//todo 目前主题仍在制作中...
+说实话写的好累啊- -  
+这个东西就不挂在npm上了  
+想用的人请自行clone，使用方法往下读
 
 ### Run
 
@@ -27,8 +29,7 @@ geekcli post update ${文章路径} #更新文章
 geekcli post delete ${文章路径} #删除文章
 ```
 
-//todo 计划制作将博客直接发布到github的api  
-
+ps.`data.json`文件中管理数据，目前可以在里面设置博客名、知乎链接、github链接、友链
 ### Themes DIY
 
 首先，最后生成的页面是由完全静态的html、js、css文件组成，这意味着只要你会前端，就可以随意制作自己的主题。  
@@ -41,7 +42,3 @@ geekcli post delete ${文章路径} #删除文章
 * 在post模板中，可以调用所有与本文章相关的数据
 * 在post之外的模板中，可以调用所有数据
 * 可调用的数据键名和数据格式请参考`./data.json`中的内容
-
-### Easy Blog Manager
-
-//todo 计划制作gui界面

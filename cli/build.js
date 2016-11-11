@@ -6,8 +6,6 @@ const {Parser,Define,Database} = require('../index');
 
 module.exports = ()=>{
     let database = new Database(`./${Define.data}`);
-    //输出data.json
-    database.flush();
     //输出除了post之外的所有layout文件
     fs.readdir(`./${Define.layout}/`,(err,paths)=>{
         for(let file of paths){
