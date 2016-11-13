@@ -95,11 +95,14 @@ class Terminal{
                 keyCode = event.keyCode;
             }
             switch (event.keyCode) {
-                case 13:
-                    this.input('$${Enter}');
+                case 9:
+                    this.input('$${Tab}');
                     break;
                 case 8:
                     this.input('$${Delete}');
+                    break;
+                case 13:
+                    this.input('$${Enter}');
                     break;
                 case 38:
                     this.input('$${Up}');
@@ -231,6 +234,15 @@ class Terminal{
             this.cmd[0] = {value:[''],line:1};
             this.curX = this.prompt.width+10;
             this.render();
+        }else if(char=='$${Tab}'){
+            for(let name in cmdHandler){
+                if(name.startsWith(this.cmd[0].value[0])){
+                    this.cmd[0].value[0] = name;
+                    this.curX = this.prompt.width+10+this.ctx.measureText(name).width;
+                    this.render();
+                    break;
+                }
+            }
         }else{
             this.history = 0;
             this.search = false;
