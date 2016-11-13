@@ -21,6 +21,12 @@ class Utils{
                         resultChar = ')';
                         break;
                 }
+            } else if(keyboardEvent.ctrlKey){
+                switch (keycode){
+                    case 85:
+                        resultChar = '$${Clear}';
+                        break;
+                }
             } else {
                 resultChar = resultChar.toLowerCase();
             }

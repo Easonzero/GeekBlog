@@ -25,6 +25,8 @@ class Terminal{
 
         this.cursorOffset = 4;
 
+        this.history = 0;
+
         this.listen();
 
         self = this;
@@ -92,13 +94,18 @@ class Terminal{
             else {
                 keyCode = event.keyCode;
             }
-
             switch (event.keyCode) {
                 case 13:
                     this.input('$${Enter}');
                     break;
                 case 8:
                     this.input('$${Delete}');
+                    break;
+                case 38:
+                    this.input('$${Up}');
+                    break;
+                case 40:
+                    this.input('$${Down}');
                     break;
                 default:
                     if (!!event) {
@@ -117,6 +124,8 @@ class Terminal{
         if(this.cmd.length===0) this.cmd.unshift({value:[''],line:1});
         if(char=='$${Enter}') {
             let cmd = '';
+            this.history = 0;
+            this.search = false;
             for(let s of this.cmd[0].value){ cmd += s }
             this.cmdHandler(cmd).then((result)=>{
                 switch(result){
@@ -139,6 +148,8 @@ class Terminal{
         }
         else if(char=='$${Delete}') {
             let cmd = this.cmd[0];
+            this.history = 0;
+            this.search = false;
             if(cmd.value[cmd.line-1].length===0&&cmd.line!=1){
                 cmd.line--;
                 let c = cmd.value[cmd.line-1].charAt(cmd.value[cmd.line-1].length-1);
@@ -151,8 +162,78 @@ class Terminal{
                 this.curX -= this.ctx.measureText(c).width;
             }
             this.render();
-        }
-        else {
+        }else if(char=='$${Up}'){
+            let cmd = this.cmd[0];
+            if(this.cmd.length===1) return;
+            if(cmd.value[0].length==0||(this.history!=0&&!this.search)){
+                if(this.history==this.cmd.length-1) return;
+                this.history++;
+                this.curY += this.cmd[this.history].line-cmd.line;
+                this.curX = this.prompt.width+10+this.ctx.measureText(this.cmd[this.history].value[this.cmd[this.history].value.length-1]).width;
+
+                cmd.value.length = 0;
+                for(let e of this.cmd[this.history].value){
+                    cmd.value.push(e);
+                }
+                cmd.line = this.cmd[this.history].line;
+            }else{
+                if(this.history===0) this.search = cmd.value[0];
+                for(let index=this.history+1;index<this.cmd.length;index++){
+                    if(this.cmd[index].value[0].startsWith(this.search)){
+                        this.history = index;
+                        break;
+                    }
+                }
+
+                this.curY += this.cmd[this.history].line-cmd.line;
+                this.curX = this.prompt.width+10+this.ctx.measureText(this.cmd[this.history].value[this.cmd[this.history].value.length-1]).width;
+
+                cmd.value.length = 0;
+                for(let e of this.cmd[this.history].value){
+                    cmd.value.push(e);
+                }
+                cmd.line = this.cmd[this.history].line;
+            }
+            this.render();
+        }else if(char=='$${Down}'){
+            let cmd = this.cmd[0];
+            if(this.history<=1) return;
+            if(!this.search){
+                this.history--;
+
+                this.curY += this.cmd[this.history].line-cmd.line;
+                this.curX = this.prompt.width+10+this.ctx.measureText(this.cmd[this.history].value[this.cmd[this.history].value.length-1]).width;
+
+                cmd.value.length = 0;
+                for(let e of this.cmd[this.history].value){
+                    cmd.value.push(e);
+                }
+                cmd.line = this.cmd[this.history].line;
+            }else{
+                for(let index=this.history-1;index>0;index--){
+                    if(this.cmd[index].value[0].startsWith(this.search)){
+                        this.history = index;
+                        break;
+                    }
+                }
+
+                this.curY += this.cmd[this.history].line-cmd.line;
+                this.curX = this.prompt.width+10+this.ctx.measureText(this.cmd[this.history].value[this.cmd[this.history].value.length-1]).width;
+
+                cmd.value.length = 0;
+                for(let e of this.cmd[this.history].value){
+                    cmd.value.push(e);
+                }
+                cmd.line = this.cmd[this.history].line;
+            }
+            this.render();
+        }else if(char=='$${Clear}'){
+            this.cmd[0] = {value:[''],line:1};
+            this.curX = this.prompt.width+10;
+            this.render();
+        }else{
+            this.history = 0;
+            this.search = false;
             let cmd = this.cmd[0];
             let start = this.curX;
             if(this.curX>this.width) {

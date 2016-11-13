@@ -52,7 +52,16 @@ content.on("mousewheel DOMMouseScroll", function (e) {
     }
 });
 
+let over = false;
 $('.head-pic-a').mouseover(function(){
-    terminal.input('hello');
-    terminal.input('$${Enter}');
+    if(!over){
+        terminal.input('clear');
+        terminal.input('$${Enter}');
+        over = true;
+        setTimeout(()=>{
+            over = false;
+            terminal.input('hello');
+            terminal.input('$${Enter}');
+        },300);
+    }
 });

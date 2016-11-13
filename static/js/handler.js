@@ -2,6 +2,19 @@
  * Created by eason on 16-11-4.
  */
 let __tag = [];
+let hello = [`
+    There is no place like
+     1  2  7  .  0  .  0  .  1
+`,
+    `
+    这是因特网不为人知的角落
+    也许整整一年只有你的访问
+    那么
+    请无论如何
+    阅读愉快             --easonzero
+`
+];
+
 let cmdHandler = {
     'help':function([cmd,reg]){
         let value = '',i=1;
@@ -62,20 +75,7 @@ let cmdHandler = {
     },
     'hello':function([cmd]){
         let value = '';
-            value=`
-            假如时光已逝，
-            鸟儿不再歌唱，
-            风儿也吹倦了，
-            那就用黑暗的厚幕把我盖上，
-            如同黄昏时节你用睡眠的衾被裹住大地，
-            又轻轻合上睡莲的花瓣。
-            路途未完，行囊已空,
-            衣裳破裂污损，人已精疲力竭。
-            你驱散了旅客的羞愧和困窘，
-            使他在你仁慈的夜幕下，
-            如花朵般焕发生机。
-            在你慈爱的夜幕下苏醒。
-        `;
+            value=hello[Math.round(Math.random()*(hello.length-1))];
         return new Promise((resolve)=>{
             resolve(value);
         })

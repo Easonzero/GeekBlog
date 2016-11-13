@@ -30,6 +30,7 @@ class Server{
             fs.exists(path, function(exists){
                 if(exists){
                     let file = fs.createReadStream(path);
+		
                     res.writeHead(200, {
                         'Content-Type': mimetype[path.split('.').pop()] || 'text/plain'
                     });
