@@ -168,6 +168,7 @@ class Terminal{
         }else if(char=='$${Up}'){
             let cmd = this.cmd[0];
             if(this.cmd.length===1) return;
+            if(this.history==this.cmd.length-1) return;
             if(cmd.value[0].length==0||(this.history!=0&&!this.search)){
                 if(this.history==this.cmd.length-1) return;
                 this.history++;
