@@ -55,9 +55,10 @@ content.on("mousewheel DOMMouseScroll", function (e) {
 let over = false;
 $('.head-pic-a').mouseover(function(){
     if(!over){
+        over = true;
+        terminal.input('$${Clear}');
         terminal.input('clear');
         terminal.input('$${Enter}');
-        over = true;
         setTimeout(()=>{
             over = false;
             terminal.input('hello');
