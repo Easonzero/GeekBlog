@@ -262,7 +262,8 @@ class Terminal{
     }
 
     cmdHandler(cmd){
-        cmd = cmd.replace(/(^\s*)|(\s*$)/g,'').split(/\s/);
+        cmd = cmd.replace(/(^\s*)|(\s*$)/g,'');
+        cmd = cmd.replace(/[(^\s*)|(\s*$)]+/g,' ').split(/\s/);
         if(cmdHandler[cmd[0]])
             return cmdHandler[cmd[0]](cmd);
         else
