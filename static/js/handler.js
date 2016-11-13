@@ -56,6 +56,7 @@ let cmdHandler = {
                         }
                     }
                 }
+                value+=`type 'article <id>' to read the article by id!`;
             }
         }else{
             __tag.length=0;
