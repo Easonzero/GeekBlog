@@ -18,7 +18,7 @@ class Hacker{
         for(let i=0;i<height/this.lineHeight;i++){
             let length = Math.ceil(Math.random()*30)+20;
             let t = length%20;
-            this.strings.push({speed:2,line:i+1,start:-length-t,end:-t,string:this.getCharQ(this.length),time:0})
+            this.strings.push({speed:length%2+1,line:i+1,start:-length-t,end:-t,string:this.getCharQ(this.length),time:0})
         }
 
         let self = this;
@@ -49,7 +49,6 @@ class Hacker{
             let str = json.string.substring(json.start*3,(json.end-1)*3);
             let start = this.ctx.measureText(json.string.substring(0,json.start*3)).width;
 
-            this.ctx.font = `${20-json.speed}px serif`;
             this.ctx.fillText(str,start,json.line*this.lineHeight);
 
             if(json.time==json.speed){
