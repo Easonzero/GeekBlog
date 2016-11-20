@@ -32,7 +32,14 @@ footer a{
     color:white
 }
 
+.ds-thread{
+    margin-top:88px;
+    padding: 10px;
+    width:80%;
+}
+
 .return,.top{
+    z-index:9999;
     text-decoration:none;
     color:white;
     background-color: rgb(10,10,10);

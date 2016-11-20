@@ -24,7 +24,7 @@ module.exports = ()=>{
                 fs.readFile(`./${Define.post}/${file}`, (err,data)=>{
                     let md = data.toString();
                     Parser.mdparse(md).then((html)=>{
-                        let post = database.getpost({path:`./${Define.post}/${file}`});
+                        let post = database.getpost({path:`${file.split('.')[0]}.html`});
                         if(post){
                             post.content = html;
                             return Parser.tmplparse(`./${Define.layout}/${Define.postTmpl}`,post);

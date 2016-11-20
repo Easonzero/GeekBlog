@@ -44,7 +44,7 @@ class Database{
     //得到post
     getpost({path}){
         for(let index in this.json.posts) {
-            if (this.json.posts[index].path = path) {
+            if (this.json.posts[index].path == path) {
                 return this.json.posts[index];
             }
         }

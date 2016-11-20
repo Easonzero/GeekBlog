@@ -20,10 +20,22 @@
     <a class='fix-button return' href='./index.html'>
         Return
     </a>
+	<div class="ds-thread center" data-thread-key="{{path}}" data-title="{{title}}" data-url="http://easonzero.cn/{{path}}"></div>
     <footer class='center'>
         <section class="bottom center">Powered By
             <a href="https://github.com/Easonzero/GeekBlog">GeekBlog</a>
         </section>
     </footer>
 </body>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"easonzero"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0]
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+</script>
 </html>
