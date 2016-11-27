@@ -3,7 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>{{name}}</title>
+    <title>{{name}}'s Blog</title>
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="ChestnutHeng's Blog">
+    <meta property="og:url" content="chestnutheng.cn/index.html">
+    <meta property="og:site_name" content="Easonzero's Blog">
+    <meta property="og:description" content="互联网 | 前端 | Node | 图形学">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="互联网 | 前端 | Node | 图形学">
+    <meta name="twitter:title" content="Easonzero's Blog">
+    <meta name="keywords" content="Easonzero, Blog">
     <link rel="stylesheet" href="css/github-markdown.css">
     <link rel="stylesheet" href="css/style.css">
     <script src="https://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>

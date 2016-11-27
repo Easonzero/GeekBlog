@@ -11,6 +11,7 @@ class Hacker{
         this.strings = [];
         this.lineHeight = 20;
         this.time=0;
+        this.stringPool = new StringPool(height/this.lineHeight);
         ctx.font = '15px serif';
         ctx.fillStyle = 'rgb(154,256,154)';
         ctx.translate(height,0);
@@ -18,7 +19,7 @@ class Hacker{
         for(let i=0;i<height/this.lineHeight;i++){
             let length = Math.ceil(Math.random()*30)+20;
             let t = length%20;
-            this.strings.push({speed:length%2+1,line:i+1,start:-length-t,end:-t,string:this.getCharQ(this.length),time:0})
+            this.strings.push(this.stringPool.getStr(length%2+1,i+1,-length-t,-t,this.getCharQ(this.length)));
         }
 
         let self = this;
@@ -59,12 +60,44 @@ class Hacker{
 
                 if(json.end==50) {
                     let length = Math.ceil(Math.random()*30)+20;
-                    this.temp.push({speed:length%2+1,line:json.line,start:-length-length%20,end:-length%20,string:this.getCharQ(this.length),time:0});
+                    this.temp.push(this.stringPool.getStr(length%2+1,json.line,-length-length%20,-length%20,this.getCharQ(this.length)));
                 }
                 if(start < this.width) this.temp.push(json);
+                else this.stringPool.returnStr(json);
             }else this.temp.push(json);
         }
         this.strings = this.temp;
+    }
+}
+
+class StringPool{
+    constructor(num){
+        this.strings = [];
+        for(let i=0;i<num;i++){
+            this.strings.push({speed:0,line:0,start:0,end:0,string:'',time:0})
+        }
+    }
+
+    getStr(speed,line,start,end,string){
+        if(this.strings.length===0){
+            this.createStr();
+        }
+        let temp = this.strings.pop();
+        temp.speed = speed;
+        temp.line = line;
+        temp.start = start;
+        temp.end =end;
+        temp.string = string;
+        return temp;
+    }
+
+    returnStr(str){
+        this.strings.push(str);
+    }
+
+    createStr(){
+        console.log("create")
+        this.strings.push({speed:0,line:0,start:0,end:0,string:'',time:0})
     }
 }
 
