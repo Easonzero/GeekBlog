@@ -50,7 +50,14 @@ class Hacker{
             let str = json.string.substring(json.start*3,(json.end-1)*3);
             let start = this.ctx.measureText(json.string.substring(0,json.start*3)).width;
 
+            //
+            // this.ctx.fillStyle = 'rgb(154,256,154)';
             this.ctx.fillText(str,start,json.line*this.lineHeight);
+
+            // if(json.end<this.length-1) {
+            //     this.ctx.fillStyle = 'white';
+            //     this.ctx.fillText(json.string.charAt(json.end),start+this.ctx.measureText(str).width,json.line*this.lineHeight);
+            // }
 
             if(json.time==json.speed){
                 json.time = 0;
@@ -96,7 +103,6 @@ class StringPool{
     }
 
     createStr(){
-        console.log("create")
         this.strings.push({speed:0,line:0,start:0,end:0,string:'',time:0})
     }
 }

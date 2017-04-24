@@ -13,6 +13,12 @@ A Lite and Geek-Style Blog Generator
 
 ### Run
 
+clone之后首先要在根目录下初始化全局命令:
+
+```shell
+sudo npm install -g
+```
+
 初始化:  
 
 ```shell

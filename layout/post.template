@@ -20,22 +20,21 @@
     <a class='fix-button return' href='./index.html'>
         Return
     </a>
-	<div class="ds-thread center" data-thread-key="{{path}}" data-title="{{title}}" data-url="http://easonzero.cn/{{path}}"></div>
+   <div id="cloud-tie-wrapper" class="cloud-tie-wrapper center"></div>
+<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+<script>
+var cloudTieConfig = {
+  url: document.location.href, 
+  productKey: "ff39b4c96c3e4b3b8fab265264a8958b",
+  target: "cloud-tie-wrapper"
+};
+var yunManualLoad = true;
+Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true);
+</script>
     <footer class='center'>
         <section class="bottom center">Powered By
             <a href="https://github.com/Easonzero/GeekBlog">GeekBlog</a>
         </section>
     </footer>
 </body>
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"easonzero"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0]
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-</script>
 </html>

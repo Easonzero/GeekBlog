@@ -74,6 +74,24 @@ let cmdHandler = {
             resolve(value);
         })
     },
+    'friendship':function([cmd,id]){
+        let value = '';
+        if(id){
+            if(id>data['friendship-link'].length-1) value = `No match with id:${id}!`;
+            else {
+                value = 'Waiting...\nFinding...';
+                setTimeout(()=>window.location.href=data['friendship-link'][id].link,500);
+            }
+        }else{
+            for(let index in data['friendship-link']){
+                value += `id '${index}'    :    name '${data['friendship-link'][index].name}'`+'\n';
+            }
+            value+=`type 'friendship <id>' to visit their blogs!`;
+        }
+        return new Promise((resolve)=>{
+            resolve(value);
+        })
+    },
     'hello':function([cmd]){
         let value = '';
             value=hello[Math.round(Math.random()*(hello.length-1))];

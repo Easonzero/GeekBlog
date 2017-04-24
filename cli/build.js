@@ -12,7 +12,7 @@ module.exports = ()=>{
             let info = fs.statSync(`./${Define.layout}/${file}`);
             if (!info.isDirectory()&&file!==Define.postTmpl) {
                 Parser.tmplparse(`./${Define.layout}/${file}`,database.json)
-                    .then((html)=>fs.writeFile(`./${Define.build}/${file.split('.')[0]}.html`,html));
+                    .then((html)=>fs.writeFileSync(`./${Define.build}/${file.split('.')[0]}.html`,html));
             }
         }
     });
@@ -30,7 +30,7 @@ module.exports = ()=>{
                             return Parser.tmplparse(`./${Define.layout}/${Define.postTmpl}`,post);
                         }
                     }).then((html)=>{
-                        fs.writeFile(`./${Define.build}/${file.split('.')[0]}.html`,html);
+                        fs.writeFileSync(`./${Define.build}/${file.split('.')[0]}.html`,html);
                     })
                 });
             }

@@ -26,7 +26,7 @@ module.exports = (method,file)=>{
                                     let info = fs.statSync(`./${Define.layout}/${file}`);
                                     if (!info.isDirectory()&&file!==Define.postTmpl) {
                                         Parser.tmplparse(`./${Define.layout}/${file}`,database.json)
-                                            .then((html)=>fs.writeFile(`./${Define.build}/${file.split('.')[0]}.html`,html));
+                                            .then((html)=>fs.writeFileSync(`./${Define.build}/${file.split('.')[0]}.html`,html));
                                     }
                                 }
                             });
@@ -36,7 +36,7 @@ module.exports = (method,file)=>{
                                     json.content = html;
                                     return Parser.tmplparse(`./${Define.layout}/${Define.postTmpl}`,json);
                                 }).then((html)=>{
-                                    fs.writeFile(`./${Define.build}/${path}`,html);
+                                    fs.writeFileSync(`./${Define.build}/${path}`,html);
                                 })
                             });
                             rl.close();
@@ -60,7 +60,7 @@ module.exports = (method,file)=>{
                             post.content = html;
                             return Parser.tmplparse(`./${Define.layout}/${Define.postTmpl}`,post);
                         }).then((html)=>{
-                            fs.writeFile(`./${Define.build}/${path}`,html);
+                            fs.writeFileSync(`./${Define.build}/${path}`,html);
                         })
                     });
                 }else{

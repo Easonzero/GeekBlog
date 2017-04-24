@@ -29,16 +29,6 @@ const hacker = new Hacker(
 );
 
 terminal.render();
-//添加友链
-for(let friend of data["friendship-link"]){
-    $('.links-of-author').append(`
-        <span class="links-of-author-item item">
-            <a href="${friend.link}">
-                友链:${friend.name}
-            </a>
-        </span>
-    `);
-}
 
 content.on("mousewheel DOMMouseScroll", function (e) {
 
