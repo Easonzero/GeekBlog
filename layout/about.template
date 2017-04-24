@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About Me</title>
+    <link rel="stylesheet" href="css/about.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+</head>
+<body>
+    <header>
+        <img class="head-pic center" src="./image/head.png"/>
+        <h2>About Me</h2><p>Easonzero</p>
+        <div class="des des_1">
+            <div class="des_c">
+                <p class="des_c_t">
+                    test1
+                </p>
+            </div>
+        </div>
+        <div class="des des_2">
+            <div class="des_c">
+                <p class="des_c_t">
+                    test2
+                </p>
+            </div>
+        </div>
+        <div class="des des_3">
+            <div class="des_c">
+                <p class="des_c_t">
+                    test3
+                </p>
+            </div>
+        </div>
+        <div class="des des_4">
+                    <div class="des_c">
+                        <p class="des_c_t">
+                            test3
+                        </p>
+                    </div>
+                </div>
+    </header>
+    <a class='fix-button top' href='#top'>
+        Top
+    </a>
+    <a class='fix-button return' href='./index.html'>
+        Return
+    </a>
+   <div id="cloud-tie-wrapper" class="cloud-tie-wrapper center"></div>
+<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+<script>
+var cloudTieConfig = {
+  url: document.location.href,
+  productKey: "ff39b4c96c3e4b3b8fab265264a8958b",
+  target: "cloud-tie-wrapper"
+};
+var yunManualLoad = true;
+Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true);
+</script>
+    <footer>
+        <section class="bottom center">Powered By
+            <a href="https://github.com/Easonzero/GeekBlog">GeekBlog</a>
+        </section>
+    </footer>
+</body>
+<script src="./js/about.js"></script>
+</html>

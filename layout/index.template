@@ -39,6 +39,11 @@
                     知乎
                  </a>
             </span>
+            <span class="links-of-author-item item">
+                  <a href="about.html">
+                    About
+                  </a>
+            </span>
         </section>
     </section>
 </header>
