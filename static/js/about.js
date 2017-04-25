@@ -25,35 +25,15 @@ let tweens = [
     (i,total)=>{ return [900+Math.abs(i-total/2+1)*80,(i%2==0)?-50:50]}
 ];
 
-for(let i=0;i<10;i++){
-    let rect = $(rectstr);
-    let tween = tweens[7](i,10);
-    rect.addClass(`rect${i+1}`).css('height','40px').css('width',`${tween[0]}px`).css('top',`${i*50}px`).css('transform',`translate(${-50+tween[1]}%)`);
-    $('header').append(rect);
-}
-
-let fIndex = Math.round(Math.random()*(keys.length-1-3));
-let thetas = Math.random()*Math.PI*2,
-    rs = Math.random()*100+100;
-let thetad = Math.random()*Math.PI*2,
-    rd = 200+Math.random()*200;
-for(let i=0;i<4;i++){
-    $(`.des_${i+1}`)
-        .css('top',`${centerY+Math.sin(thetas)*rs+Math.sin(thetad+i*Math.PI/2)*rd}px`)
-        .css('left',`${centerX+Math.cos(thetas)*rs+Math.cos(thetad+i*Math.PI/2)*rd}px`);
-    $(`.des_${i+1} > div > .des_c_t`).text(keys[fIndex+i]);
-}
-
-setInterval(()=>{
-    let index = Math.round(Math.random()*(tweens.length-1));
+function init(){
     for(let i=0;i<10;i++){
-        let tween = tweens[index](i,10);
-        $(`.rect${i+1}`).css('height','40px').css('width',`${tween[0]}px`).css('top',`${i*50}px`).css('transform',`translate(${-50+tween[1]}%)`);
+        let rect = $(rectstr);
+        let tween = tweens[7](i,10);
+        rect.addClass(`rect${i+1}`).css('height','40px').css('width',`${tween[0]}px`).css('top',`${i*50}px`).css('transform',`translate(${-50+tween[1]}%)`);
+        $('header').append(rect);
     }
-},5000);
 
-setInterval(()=>{
-    let index = Math.round(Math.random()*(keys.length-1-3));
+    let fIndex = Math.round(Math.random()*(keys.length-1-3));
     let thetas = Math.random()*Math.PI*2,
         rs = Math.random()*100+100;
     let thetad = Math.random()*Math.PI*2,
@@ -62,6 +42,30 @@ setInterval(()=>{
         $(`.des_${i+1}`)
             .css('top',`${centerY+Math.sin(thetas)*rs+Math.sin(thetad+i*Math.PI/2)*rd}px`)
             .css('left',`${centerX+Math.cos(thetas)*rs+Math.cos(thetad+i*Math.PI/2)*rd}px`);
-        $(`.des_${i+1} > div > .des_c_t`).text(keys[index+i]);
+        $(`.des_${i+1} > div > .des_c_t`).text(keys[fIndex+i]);
     }
-},2000);
+
+    setInterval(()=>{
+        let index = Math.round(Math.random()*(tweens.length-1));
+        for(let i=0;i<10;i++){
+            let tween = tweens[index](i,10);
+            $(`.rect${i+1}`).css('height','40px').css('width',`${tween[0]}px`).css('top',`${i*50}px`).css('transform',`translate(${-50+tween[1]}%)`);
+        }
+    },5000);
+
+    setInterval(()=>{
+        let index = Math.round(Math.random()*(keys.length-1-3));
+        let thetas = Math.random()*Math.PI*2,
+            rs = Math.random()*100+100;
+        let thetad = Math.random()*Math.PI*2,
+            rd = 200+Math.random()*200;
+        for(let i=0;i<4;i++){
+            $(`.des_${i+1}`)
+                .css('top',`${centerY+Math.sin(thetas)*rs+Math.sin(thetad+i*Math.PI/2)*rd}px`)
+                .css('left',`${centerX+Math.cos(thetas)*rs+Math.cos(thetad+i*Math.PI/2)*rd}px`);
+            $(`.des_${i+1} > div > .des_c_t`).text(keys[index+i]);
+        }
+    },2000);
+}
+
+window.onload = init;

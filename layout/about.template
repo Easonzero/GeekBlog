@@ -8,7 +8,7 @@
     <script src="https://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <body>
-    <header>
+    <header id="_top">
         <img class="head-pic center" src="./image/head.png"/>
         <h2>About Me</h2><p>Easonzero</p>
         <div class="des des_1">
@@ -40,13 +40,13 @@
                     </div>
                 </div>
     </header>
-    <a class='fix-button top' href='#top'>
+    <a class='fix-button top' href='#_top'>
         Top
     </a>
     <a class='fix-button return' href='./index.html'>
         Return
     </a>
-   <div id="cloud-tie-wrapper" class="cloud-tie-wrapper center"></div>
+<div id="cloud-tie-wrapper" class="cloud-tie-wrapper center"></div>
 <script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
 <script>
 var cloudTieConfig = {

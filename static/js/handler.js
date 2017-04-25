@@ -84,7 +84,7 @@ let cmdHandler = {
             }
         }else{
             for(let index in data['friendship-link']){
-                value += `id '${index}'    :    name '${data['friendship-link'][index].name}'`+'\n';
+                value += `id '${index}'    :    ${data['friendship-link'][index].name}|${data['friendship-link'][index].summary}`+'\n';
             }
             value+=`type 'friendship <id>' to visit their blogs!`;
         }
