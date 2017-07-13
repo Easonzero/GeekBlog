@@ -25,8 +25,7 @@ let tweens = [
     (i,total)=>{ return [900+Math.abs(i-total/2+1)*80,(i%2==0)?-50:50]}
 ];
 
-function init(){
-    for(let i=0;i<10;i++){
+for(let i=0;i<10;i++){
         let rect = $(rectstr);
         let tween = tweens[7](i,10);
         rect.addClass(`rect${i+1}`).css('height','40px').css('width',`${tween[0]}px`).css('top',`${i*50}px`).css('transform',`translate(${-50+tween[1]}%)`);
@@ -42,6 +41,7 @@ function init(){
         $(`.des_${i+1}`)
             .css('top',`${centerY+Math.sin(thetas)*rs+Math.sin(thetad+i*Math.PI/2)*rd}px`)
             .css('left',`${centerX+Math.cos(thetas)*rs+Math.cos(thetad+i*Math.PI/2)*rd}px`);
+	
         $(`.des_${i+1} > div > .des_c_t`).text(keys[fIndex+i]);
     }
 
@@ -66,6 +66,3 @@ function init(){
             $(`.des_${i+1} > div > .des_c_t`).text(keys[index+i]);
         }
     },2000);
-}
-
-window.onload = init;
