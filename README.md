@@ -2,7 +2,7 @@
 A Lite and Geek-Style Blog Generator  
 一个`轻量的`、`极客风格`的博客生成器  
 
-[geekblog展示博客](http://easonzero.cn)
+[geekblog展示博客](http://easonzero.github.io)
 
 为什么说是极客风格呢？该博客生成器的默认主题采用终端风格，打造酷炫的geek风页面  
 而且不单单只是风格，默认主题上的终端是完全可以使用的...  
