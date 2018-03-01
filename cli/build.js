@@ -1,6 +1,7 @@
 /**
  * Created by eason on 16-11-7.
  */
+"use strict";
 const fs = require('fs');
 const {Parser,Define,Database} = require('../index');
 
@@ -43,7 +44,7 @@ module.exports = ()=>{
                 throw err;
             }
             paths.forEach((path)=>{
-                var _src = `${src}/${path}`,
+                let _src = `${src}/${path}`,
                     _dst = `${dst}/${path}`,
                     readable, writable;
                 fs.stat(_src,(err, st)=>{

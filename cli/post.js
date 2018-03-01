@@ -1,6 +1,7 @@
 /**
  * Created by eason on 16-11-7.
  */
+"use strict";
 const fs = require('fs');
 const {Parser,Define,Database} = require('../index');
 const readline = require('readline');

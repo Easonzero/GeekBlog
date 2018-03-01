@@ -1,8 +1,10 @@
 #!/usr/bin/env node
+"use strict";
 let init = require('./init');
 let build = require('./build');
 let post = require('./post');
 let server = require('./server');
+let publish = require('./publish');
 
 switch(process.argv[2]){
     case 'init'://初始化命令
@@ -17,6 +19,9 @@ switch(process.argv[2]){
     case 'server'://开启服务器命令
         server();
         break;
+    case 'publish':
+	publish();
+	break;
     default:
         console.log(`
 Usage: geekcli <command>

@@ -1,6 +1,7 @@
 /**
  * Created by eason on 16-11-9.
  */
+"use strict";
 const fs = require('fs');
 const {Define} = require('../index');
 

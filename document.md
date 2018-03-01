@@ -36,7 +36,7 @@
 初始化:  
 
 ```shell
-geekcli init    #初始化博客生成器
+geekcli init    #初始化博客生成器,初始化后各文件夹都是空的，你可以将原项目中`\static`和`\layout`文件夹中的内容复制到你的博客对应文件夹下后再作修改
 geekcli build   #构建、生成博客
 geekcli server  #运行调试服务器，通过127.0.0.1:4000可以本地访问生成的博客
 ```
