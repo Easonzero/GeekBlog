@@ -21,6 +21,7 @@ class Database{
                 return this;
             }
         }
+console.log(title,tag,path)
         this.json.posts.unshift({
             title:title,tag:tag,date:_date,path:path
         });
@@ -29,7 +30,7 @@ class Database{
     //去除post
     rmpost({path}){
         for(let index in this.json.posts){
-            if(this.json.posts[index].path = path) {
+            if(this.json.posts[index].path == path) {
                 let file = `./build/${this.json.posts[index].path}`;
                 fs.exists(file,(exist)=>{
                     if(exist){

@@ -77,5 +77,7 @@ module.exports = (method,file)=>{
                 new Database(`./${Define.data}`).rmpost({path:`${/\/.*\/(.*)\.md$/.exec(file)[1]}.html`}).flush();
             });
             break;
+	default:
+	    console.log('ERROR : post create/update/delete');
     }
 };
