@@ -1,4 +1,8 @@
 # GeekBlog
+
+[![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
+[![Badge](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu/#/zh_CN)
+
 A Lite and Geek-Style Blog Generator  
 一个`轻量的`、`极客风格`的博客生成器  
 
